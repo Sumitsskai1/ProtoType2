@@ -13,7 +13,7 @@ struct Task : Hashable, Codable, Identifiable {
 
     var parentTask:     String = ""
     var name:           String = ""
-    var deadline:       String = ""
+    var deadline:       Date = Date()
     var memo:           String = ""
     var childrenTask:   [Task] = []
 }

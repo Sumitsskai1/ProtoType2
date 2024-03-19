@@ -30,11 +30,11 @@ struct ContentView: View {
             
             VStack {
                 HStack {
-                    TextField("Input New Main Task Name...", text: $newMainTaskaName)
+                    TextField("New Main Task Name...", text: $newMainTaskaName)
                         .textFieldStyle(.roundedBorder)
                     Spacer()
                     
-                    Button("Add") {
+                    Button(action: {
                         // TODO namae kaburi taiou ireru
                         MainTasks.append(Task(name:String(format: newMainTaskaName )))
                         
@@ -43,8 +43,13 @@ struct ContentView: View {
                         if let encodeValue = try? encoder.encode(MainTasks) {
                             UserDefaults.standard.set(encodeValue, forKey: keyString)
                         }
+                    }){
+                        Image(systemName: "plus.circle")
+                            .fontWeight(.light)
+                        Text("Add")
+                            .fontWeight(.light)
                     }
-                    .frame(width:40, height: 20)
+                    .frame(width:60, height: 20)
                 }
                 .padding(.horizontal)
                 List {
@@ -73,7 +78,7 @@ struct ContentView: View {
                     })
                 }
             }
-            .navigationBarTitle("Task Management App", displayMode: .inline)
+            .navigationBarTitle(Text("Task Management App"), displayMode: .inline)
         }
     }
 }
